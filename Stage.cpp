@@ -4,9 +4,7 @@
 
 const int STAGE_X{ 15 };
 const int STAGE_Y{ 15 };
-int stage[STAGE_X][STAGE_Y]{
-	{1},{1},{1},{1},{1},{1},{1},{1},{1},{1},{1}
-};
+int stage[STAGE_X][STAGE_Y]{};
 
 Stage::Stage(GameObject* parent)
 	:GameObject(parent, "Stage"), hFloor_(-1),hWall_(-1)
