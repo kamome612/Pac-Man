@@ -27,6 +27,9 @@
     <Filter Include="Scenes">
       <UniqueIdentifier>{1fb438c8-e827-40bf-85bd-2328428184d5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scenes\PLAY">
+      <UniqueIdentifier>{1bdce855-d5c5-4fdc-aa18-e42bd3c36313}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\BoxCollider.cpp">
@@ -100,10 +103,13 @@
       <Filter>01Engine\ResourceManager</Filter>
     </ClCompile>
     <ClCompile Include="PlayScene.cpp">
-      <Filter>Scenes</Filter>
+      <Filter>Scenes\PLAY</Filter>
     </ClCompile>
     <ClCompile Include="Stage.cpp">
-      <Filter>Scenes</Filter>
+      <Filter>Scenes\PLAY</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Scenes\PLAY</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -178,10 +184,13 @@
       <Filter>01Engine\ResourceManager</Filter>
     </ClInclude>
     <ClInclude Include="PlayScene.h">
-      <Filter>Scenes</Filter>
+      <Filter>Scenes\PLAY</Filter>
     </ClInclude>
     <ClInclude Include="Stage.h">
-      <Filter>Scenes</Filter>
+      <Filter>Scenes\PLAY</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Scenes\PLAY</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
