@@ -1,9 +1,10 @@
 #include "Player.h"
 #include "Engine/Model.h"
 #include "Engine/Input.h"
+#include "Engine/Debug.h"
 
 namespace {
-	const float PLAYER_MOVE_SPEED{ 0.1 };
+	const float PLAYER_MOVE_SPEED{ 1.0f };
 }
 
 Player::Player(GameObject* parent)
@@ -30,22 +31,22 @@ void Player::Update()
 	XMVECTOR vFront = { 0,0,1,0 };
 	XMVECTOR move = { 0,0,1,0 };
 
-	if (Input::IsKey(DIK_UP)) {
+	if (Input::IsKeyDown(DIK_UP)) {
 		move = XMVECTOR{ 0,0,1,0 };
 		//moveDir = Dir::UP;
 		//transform_.rotate_.y = 0;
 	}
-	else if (Input::IsKey(DIK_DOWN)) {
+	else if (Input::IsKeyDown(DIK_DOWN)) {
 		move = XMVECTOR{ 0,0,-1,0 };
 		//moveDir = Dir::DOWN;
 		//transform_.rotate_.y = 180;
 	}
-	else if (Input::IsKey(DIK_RIGHT)) {
+	else if (Input::IsKeyDown(DIK_RIGHT)) {
 		move = XMVECTOR{ 1,0,0,0 };
 		//moveDir = Dir::RIGHT;
 		//transform_.rotate_.y = 90;
 	}
-	else if (Input::IsKey(DIK_LEFT)) {
+	else if (Input::IsKeyDown(DIK_LEFT)) {
 		move = XMVECTOR{ -1,0,0,0 };
 		//moveDir = Dir::LEFT;
 		//transform_.rotate_.y = 270;
@@ -69,6 +70,12 @@ void Player::Update()
 
 	XMVECTOR vdot = XMVector3Dot(vFront, move);
 	float angle = acos(XMVectorGetX(vdot));
+
+	XMVECTOR vCross = XMVector3Cross(vFront, move);
+	assert(XMVectorGetX(vdot) <= 1 && XMVectorGetX(vdot) >= -1);
+	if (XMVectorGetY(vCross) < 0) {
+		angle *= -1;
+	}
 	transform_.rotate_.y = XMConvertToDegrees(angle);
 
 	/*float rotAngle[5]{ 0,180,90,270,0 };
