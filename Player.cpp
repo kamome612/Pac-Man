@@ -18,6 +18,7 @@ void Player::Initialize()
 	assert(hPac_ >= 0);
 	transform_.position_.x = 0.5;
 	transform_.position_.z = 1.5;
+	//map[13][1]Ç™ÅA(map[y][x]ÇÃèÍçá)èâä˙à íu
 }
 
 void Player::Update()
@@ -66,6 +67,11 @@ void Player::Update()
 	}
 	XMVECTOR pos = XMLoadFloat3(&(transform_.position_));
 	pos = pos + speed_ * move;
+	Debug::Log("(X, Y)=");
+	Debug::Log(XMVectorGetX(pos));
+	Debug::Log(",");
+	Debug::Log(XMVectorGetZ(pos), true);
+
 	XMStoreFloat3(&(transform_.position_), pos);
 
 	XMVECTOR vdot = XMVector3Dot(vFront, move);
