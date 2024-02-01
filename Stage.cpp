@@ -5,8 +5,8 @@
 
 namespace
 {
-	const int STAGE_X{ 15 };
-	const int STAGE_Y{ 15 };
+	/*const int STAGE_X{ 15 };
+	const int STAGE_Y{ 15 };*/
 }
 
 Stage::Stage(GameObject* parent)
@@ -14,18 +14,18 @@ Stage::Stage(GameObject* parent)
 {
 	CsvReader map;
 	map.Load("map.csv");
-	int w = map.GetWidth();
-	int h = map.GetHeight();
+	stageWidth_ = map.GetWidth();
+	stageHeight_= map.GetHeight();
 
-	for (int i = 0; i < STAGE_Y; i++) {
-		vector<int>sdata(STAGE_X, 0);//15個の配列を0で初期化
+	for (int i = 0; i < stageHeight_; i++) {
+		vector<int>sdata(stageWidth_, 0);//stageWidth_個の配列を0で初期化
 		stageData_.push_back(sdata);
 	}
 
 	//vector<vector<int>>stageData_(w, vector<int>(h, 0));
 
-	for (int j = 0; j < STAGE_Y; j++) {
-		for (int i = 0; i < STAGE_X; i++) {
+	for (int j = 0; j < stageHeight_; j++) {
+		for (int i = 0; i < stageWidth_; i++) {
 			stageData_[j][i] = map.GetValue(i, j);
 		}
 	}
@@ -86,4 +86,20 @@ void Stage::Draw()
 }
 void Stage::Release()
 {
+	//配列のお掃除
+	for (int i = 0; i < stageHeight_; i++) {
+		stageData_[i].clear();
+	}
+	stageData_.clear();
+}
+
+bool Stage::IsWall(int _x, int _y)
+{
+	//assert(stageWidth_>_x >=0);//_x,_yの範囲チェック
+	if (stageData_[_y][_x] == STAGE_OBJ::WALL) {
+		return true;
+	}
+	else {
+		return false;
+	}
 }
