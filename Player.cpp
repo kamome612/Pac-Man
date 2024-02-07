@@ -3,13 +3,15 @@
 #include "Engine/Input.h"
 #include "Engine/Debug.h"
 #include "Stage.h"
+#include "Gauge.h"
 
 namespace {
-	const float PLAYER_MOVE_SPEED{ 1.0f };
+	const float PLAYER_MOVE_SPEED{ 0.06f };
 }
 
 Player::Player(GameObject* parent)
-	:GameObject(parent,"Player"),hPac_(-1),speed_(PLAYER_MOVE_SPEED),pStage_(nullptr)
+	:GameObject(parent,"Player"),hPac_(-1),speed_(PLAYER_MOVE_SPEED),pStage_(nullptr),
+	hpMax_(100),hpCrr_(100)
 {
 }
 
@@ -66,8 +68,8 @@ void Player::Update()
 	if (transform_.position_.z > 13.5) {
 		transform_.position_.z = 13.5;
 	}*/
-	XMVECTOR posTmp = XMVectorZero();//ゼロベクトルで初期化
 	XMVECTOR pos = XMLoadFloat3(&(transform_.position_));
+	XMVECTOR posTmp = XMVectorZero();//ゼロベクトルで初期化
 	posTmp = pos + speed_ * move;
 	//posTmp.x. posTmp.z => int tx,ty :配列のインデックス
 	//仮のmapの配列をmap[][]とする
@@ -80,32 +82,49 @@ void Player::Update()
 	Debug::Log(",");
 	Debug::Log(XMVectorGetZ(pos), true);*/
 	int tx, ty;
-	tx = (int)(XMVectorGetX(posTmp) + 0.5);
-	ty = pStage_->GetStageWidth() - (int)(XMVectorGetZ(posTmp) + 0.5);
-	Debug::Log("(iX, iZ)=");
+	tx = (int)(XMVectorGetX(posTmp) + 1.0f);
+	ty = pStage_->GetStageWidth() - (int)(XMVectorGetZ(posTmp) + 1.0f);
+	/*Debug::Log("(iX, iZ)=");
 	Debug::Log(tx);
 	Debug::Log(",");
 	Debug::Log(ty);
 	Debug::Log(":");
-	Debug::Log(pStage_->IsWall(tx,ty),true);
+	Debug::Log(pStage_->IsWall(tx,ty),true);*/
 	if (!(pStage_->IsWall(tx, ty))) {
 		pos = posTmp;
+	}
+	else {
+		hpCrr_ = hpCrr_ - 2;
+		if (hpCrr_ < 0) hpCrr_ = 0;
 	}
 	//pos = pos + speed_ * move;
 	if (!XMVector3Equal(move, XMVectorZero())) {
 		XMStoreFloat3(&(transform_.position_), pos);
 
-		XMVECTOR vdot = XMVector3Dot(vFront, move);
+		/*XMMATRIX rot = XMMatrixRotationY(-XM_PIDIV2);
+		XMVECTOR modifiedVec = XMPlaneTransform(move, rot);
+		Debug::Log(XMVectorGetX(modifiedVec));
+		Debug::Log(",");
+		Debug::Log(XMVectorGetZ(modifiedVec));*/
+
+		float angle = atan2(XMVectorGetX(move), XMVectorGetZ(move));
+
+		Debug::Log(" => ");
+		Debug::Log(XMConvertToDegrees(angle), true);
+		/*XMVECTOR vdot = XMVector3Dot(vFront, move);
+		assert(XMVectorGetX(vdot) <= 1 && XMVectorGetX(vdot) >= -1);
 		float angle = acos(XMVectorGetX(vdot));
 
 		XMVECTOR vCross = XMVector3Cross(vFront, move);
-		assert(XMVectorGetX(vdot) <= 1 && XMVectorGetX(vdot) >= -1);
 		if (XMVectorGetY(vCross) < 0) {
 			angle *= -1;
-		}
+		}*/
 		transform_.rotate_.y = XMConvertToDegrees(angle);
 
 	}
+
+	pGauge_ = (Gauge*)FindObject("Gauge");
+	pGauge_->SetGaugeVal(hpCrr_, hpMax_);
 	/*float rotAngle[5]{ 0,180,90,270,0 };
 	transform_.rotate_.y = rotAngle[moveDir];*/
 }
