@@ -34,6 +34,8 @@ void Player::Update()
 
 	XMVECTOR vFront = { 0,0,1,0 };
 	XMVECTOR move = { 0,0,0,0 };
+	float nextX = 0.0;
+	float nextY = 0.0;
 
 	if (Input::IsKey(DIK_UP)) {
 		move = XMVECTOR{ 0,0,1,0 };
@@ -77,19 +79,19 @@ void Player::Update()
 	/*if (map[ty][tx] == STAGE_OBJ::FLOOR) {
 		pos = pos + speed_ * move;
 	}*/
-	/*Debug::Log("(X, Y)=");
+	Debug::Log("(X, Y)=");
 	Debug::Log(XMVectorGetX(pos));
 	Debug::Log(",");
-	Debug::Log(XMVectorGetZ(pos), true);*/
+	Debug::Log(XMVectorGetZ(pos), true);
 	int tx, ty;
-	tx = (int)(XMVectorGetX(posTmp) + 1.0f);
-	ty = pStage_->GetStageWidth() - (int)(XMVectorGetZ(posTmp) + 1.0f);
-	/*Debug::Log("(iX, iZ)=");
+	tx = (int)(XMVectorGetX(posTmp) + 0.5f);
+	ty = pStage_->GetStageHeight() - (int)(XMVectorGetZ(posTmp) + 0.5f);
+	Debug::Log("(iX, iZ)=");
 	Debug::Log(tx);
 	Debug::Log(",");
 	Debug::Log(ty);
 	Debug::Log(":");
-	Debug::Log(pStage_->IsWall(tx,ty),true);*/
+	Debug::Log(pStage_->IsWall(tx,ty),true);
 	if (!(pStage_->IsWall(tx, ty))) {
 		pos = posTmp;
 	}

@@ -30,6 +30,12 @@
     <Filter Include="Scenes\PLAY">
       <UniqueIdentifier>{1bdce855-d5c5-4fdc-aa18-e42bd3c36313}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scenes\TITLE">
+      <UniqueIdentifier>{b771a183-76c9-4e3e-867c-cf38884b16ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes\CLEAR">
+      <UniqueIdentifier>{43432adc-0517-411b-b56f-f7ef7e0626e6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\BoxCollider.cpp">
@@ -86,7 +92,6 @@
     <ClCompile Include="Engine\Transform.cpp">
       <Filter>01Engine\GameObject</Filter>
     </ClCompile>
-    <ClCompile Include="TestScene.cpp" />
     <ClCompile Include="Engine\Audio.cpp">
       <Filter>01Engine\ResourceManager</Filter>
     </ClCompile>
@@ -111,7 +116,15 @@
     <ClCompile Include="Player.cpp">
       <Filter>Scenes\PLAY</Filter>
     </ClCompile>
-    <ClCompile Include="Gauge.cpp" />
+    <ClCompile Include="Gauge.cpp">
+      <Filter>Scenes\PLAY</Filter>
+    </ClCompile>
+    <ClCompile Include="TestScene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleScene.cpp">
+      <Filter>Scenes\TITLE</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\BoxCollider.h">
@@ -168,7 +181,6 @@
     <ClInclude Include="Engine\Transform.h">
       <Filter>01Engine\GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="TestScene.h" />
     <ClInclude Include="Engine\Audio.h">
       <Filter>01Engine\ResourceManager</Filter>
     </ClInclude>
@@ -193,7 +205,15 @@
     <ClInclude Include="Player.h">
       <Filter>Scenes\PLAY</Filter>
     </ClInclude>
-    <ClInclude Include="Gauge.h" />
+    <ClInclude Include="Gauge.h">
+      <Filter>Scenes\PLAY</Filter>
+    </ClInclude>
+    <ClInclude Include="TestScene.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleScene.h">
+      <Filter>Scenes\TITLE</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Assets\Shader\Simple2D.hlsl">
