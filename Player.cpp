@@ -34,28 +34,36 @@ void Player::Update()
 
 	XMVECTOR vFront = { 0,0,1,0 };
 	XMVECTOR move = { 0,0,0,0 };
-	float nextX = 0.0;
-	float nextY = 0.0;
+	float nextX = 1.0f;
+	float nextZ = 1.0f;
 
 	if (Input::IsKey(DIK_UP)) {
 		move = XMVECTOR{ 0,0,1,0 };
+		nextZ = 1.5f;
 		//moveDir = Dir::UP;
 		//transform_.rotate_.y = 0;
 	}
 	else if (Input::IsKey(DIK_DOWN)) {
 		move = XMVECTOR{ 0,0,-1,0 };
+		nextZ = 0.5f;
 		//moveDir = Dir::DOWN;
 		//transform_.rotate_.y = 180;
 	}
 	else if (Input::IsKey(DIK_RIGHT)) {
 		move = XMVECTOR{ 1,0,0,0 };
+		nextX = 1.5f;
 		//moveDir = Dir::RIGHT;
 		//transform_.rotate_.y = 90;
 	}
 	else if (Input::IsKey(DIK_LEFT)) {
 		move = XMVECTOR{ -1,0,0,0 };
+		nextX = 0.5f;
 		//moveDir = Dir::LEFT;
 		//transform_.rotate_.y = 270;
+	}
+	else {
+		nextX = 1.0;
+		nextZ = 1.0;
 	}
 	
 	/*if (transform_.position_.x < 0.5) {
@@ -84,8 +92,8 @@ void Player::Update()
 	Debug::Log(",");
 	Debug::Log(XMVectorGetZ(pos), true);
 	int tx, ty;
-	tx = (int)(XMVectorGetX(posTmp) + 0.5f);
-	ty = pStage_->GetStageHeight() - (int)(XMVectorGetZ(posTmp) + 0.5f);
+	tx = (int)(XMVectorGetX(posTmp) + nextX);
+	ty = pStage_->GetStageWidth() - (int)(XMVectorGetZ(posTmp) + nextZ);
 	Debug::Log("(iX, iZ)=");
 	Debug::Log(tx);
 	Debug::Log(",");

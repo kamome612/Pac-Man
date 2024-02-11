@@ -37,6 +37,8 @@ void Stage::Initialize()
 	assert(hFloor_ >= 0);
 	hWall_ = Model::Load("Wall.fbx");
 	assert(hWall_ >= 0);
+	Camera::SetPosition(XMFLOAT3(6.5, 10, -5));
+	Camera::SetTarget(XMFLOAT3(6.5, 0, 5.5));
 }
 
 void Stage::Update()
