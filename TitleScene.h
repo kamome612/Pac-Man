@@ -4,6 +4,8 @@
 //テストシーンを管理するクラス
 class TitleScene : public GameObject
 {
+private:
+	int tPict_;
 public:
 	//コンストラクタ
 	//引数：parent  親オブジェクト（SceneManager）

@@ -4,6 +4,8 @@
 //クリアシーンを管理するクラス
 class ClearScene : public GameObject
 {
+private:
+	int cPict_;
 public:
 	//コンストラクタ
 	//引数：parent  親オブジェクト（SceneManager）
