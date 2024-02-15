@@ -1,17 +1,18 @@
 #pragma once
 #include "Engine/GameObject.h"
-#include "Engine/Text.h"
+#include <vector>
+using std::vector;
 
-//テストシーンを管理するクラス
-class TitleScene : public GameObject
+class Cookie :
+    public GameObject
 {
-private:
-	int tPict_;
-	Text* tText_;
+    int hCookie_;
+	vector<vector<int>>stageData_;
+	int stageWidth_, stageHeight_;
 public:
 	//コンストラクタ
 	//引数：parent  親オブジェクト（SceneManager）
-	TitleScene(GameObject* parent);
+	Cookie(GameObject* parent);
 
 	//初期化
 	void Initialize() override;
@@ -24,4 +25,8 @@ public:
 
 	//開放
 	void Release() override;
+
+	//あたり判定
+	void OnCollision(GameObject* pTarget) override;
 };
+

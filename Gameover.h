@@ -1,17 +1,15 @@
 #pragma once
 #include "Engine/GameObject.h"
-#include "Engine/Text.h"
 
-//テストシーンを管理するクラス
-class TitleScene : public GameObject
+//ゲームオーバーシーンを管理するクラス
+class GameoverScene : public GameObject
 {
 private:
-	int tPict_;
-	Text* tText_;
+	int goPict_;
 public:
 	//コンストラクタ
 	//引数：parent  親オブジェクト（SceneManager）
-	TitleScene(GameObject* parent);
+	GameoverScene(GameObject* parent);
 
 	//初期化
 	void Initialize() override;

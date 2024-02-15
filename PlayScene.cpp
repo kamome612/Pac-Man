@@ -3,6 +3,7 @@
 #include "Engine/Camera.h"
 #include "Player.h"
 #include "Gauge.h"
+#include "Cookie.h"
 
 PlayScene::PlayScene(GameObject* parent)
 	:GameObject(parent,"PlayScene")
@@ -15,6 +16,7 @@ void PlayScene::Initialize()
 	Instantiate<Stage>(this);
 	Instantiate<Player>(this);
 	Instantiate<Gauge>(this);
+	Instantiate<Cookie>(this);
 }
 
 void PlayScene::Update()

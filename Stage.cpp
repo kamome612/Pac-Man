@@ -2,6 +2,7 @@
 #include "Engine/Model.h"
 #include "Engine/Camera.h"
 #include "Engine/CsvReader.h"
+#include "Cookie.h"
 
 namespace
 {
@@ -37,7 +38,7 @@ void Stage::Initialize()
 	assert(hFloor_ >= 0);
 	hWall_ = Model::Load("Wall.fbx");
 	assert(hWall_ >= 0);
-	Camera::SetPosition(XMFLOAT3(6.5, 10, -5));
+	Camera::SetPosition(XMFLOAT3(6.5, 13, -5));
 	Camera::SetTarget(XMFLOAT3(6.5, 0, 5.5));
 }
 

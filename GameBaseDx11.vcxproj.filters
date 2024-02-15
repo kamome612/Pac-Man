@@ -36,6 +36,9 @@
     <Filter Include="Scenes\CLEAR">
       <UniqueIdentifier>{43432adc-0517-411b-b56f-f7ef7e0626e6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scenes\GAMEOVER">
+      <UniqueIdentifier>{3b40d4a4-35f0-4462-9a1a-8ad847334ce0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\BoxCollider.cpp">
@@ -128,6 +131,12 @@
     <ClCompile Include="ClearScene.cpp">
       <Filter>Scenes\CLEAR</Filter>
     </ClCompile>
+    <ClCompile Include="Gameover.cpp">
+      <Filter>Scenes\GAMEOVER</Filter>
+    </ClCompile>
+    <ClCompile Include="Cookie.cpp">
+      <Filter>Scenes\PLAY</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\BoxCollider.h">
@@ -219,6 +228,12 @@
     </ClInclude>
     <ClInclude Include="ClearScene.h">
       <Filter>Scenes\CLEAR</Filter>
+    </ClInclude>
+    <ClInclude Include="Gameover.h">
+      <Filter>Scenes\GAMEOVER</Filter>
+    </ClInclude>
+    <ClInclude Include="Cookie.h">
+      <Filter>Scenes\PLAY</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

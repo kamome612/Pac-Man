@@ -2,6 +2,7 @@
 #include "Engine/Model.h"
 #include "Engine/Input.h"
 #include "Engine/Debug.h"
+#include "Engine/SceneManager.h"
 #include "Stage.h"
 #include "Gauge.h"
 
@@ -19,6 +20,8 @@ void Player::Initialize()
 {
 	hPac_ = Model::Load("Player.fbx");
 	assert(hPac_ >= 0);
+	SphereCollider* collision = new SphereCollider({ 0,0.5,0 }, 0.3f);
+	AddCollider(collision);
 	transform_.position_.x = 0.5;
 	transform_.position_.z = 1.5;
 	pStage_ = (Stage*)FindObject("Stage");
@@ -137,6 +140,11 @@ void Player::Update()
 	pGauge_->SetGaugeVal(hpCrr_, hpMax_);
 	/*float rotAngle[5]{ 0,180,90,270,0 };
 	transform_.rotate_.y = rotAngle[moveDir];*/
+
+	if (hpCrr_ == 0) {
+		SceneManager* pSceneManager = (SceneManager*)FindObject("SceneManager");
+		pSceneManager->ChangeScene(SCENE_ID_GAMEOVER);
+	}
 }
 
 void Player::Draw()
