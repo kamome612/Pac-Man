@@ -20,7 +20,7 @@ void Player::Initialize()
 {
 	hPac_ = Model::Load("Player.fbx");
 	assert(hPac_ >= 0);
-	SphereCollider* collision = new SphereCollider({ 0,0.5,0 }, 0.3f);
+	SphereCollider* collision = new SphereCollider({ 0,0.3,0 }, 0.2f);
 	AddCollider(collision);
 	transform_.position_.x = 0.5;
 	transform_.position_.z = 1.5;

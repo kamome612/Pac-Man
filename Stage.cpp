@@ -11,7 +11,7 @@ namespace
 }
 
 Stage::Stage(GameObject* parent)
-	:GameObject(parent, "Stage")
+	:GameObject(parent, "Stage"),hFloor_(-1),hWall_(-1)
 {
 	CsvReader map;
 	map.Load("map.csv");
@@ -76,7 +76,7 @@ void Stage::Draw()
 	for (int z = 0; z <stageHeight_; z++) {
 		for (int x = 0; x < stageWidth_; x++) {
 			floorTrans.position_ = { (float)x,0,(float)(14 - z) };
-			if (stageData_[z][x] == 1 ) {
+			if(stageData_[z][x]==1){
 				Model::SetTransform(hWall_, floorTrans);
 				Model::Draw(hWall_);
 			}
